@@ -7,6 +7,11 @@ app.get('/', (req, res) => {
   res.send('Hello World!'); // ส่งข้อความ 'Hello World!' กลับไปยัง client
 });
 
+// เพิ่ม route สำหรับการ handle request GET
+app.get('/test', (req, res) => {
+    res.send('Hello World!'); // ส่งข้อความ 'Hello World!' กลับไปยัง client
+  });
+
 // ถ้าไม่พบ route ที่ตรงกับที่ร้องขอ
 app.use((req, res) => {
   res.status(404).send('Not Found'); // ส่งข้อความ 'Not Found' และ HTTP status code 404 กลับไปยัง client
