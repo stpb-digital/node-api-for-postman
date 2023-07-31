@@ -4,6 +4,8 @@
   "description": "This repository use for couse postman only",
   "main": "app.js",
   "scripts": {
+    "start": "node index.js",
+    "build": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
