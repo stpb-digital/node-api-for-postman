@@ -1,25 +1,23 @@
 {
-  "name": "node-api-for-postman",
-  "version": "1.0.0",
-  "description": "This repository use for couse postman only",
-  "main": "app.js",
+  "name": "node-api",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "start": "node index.js",
-    "build": "node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/stpb-digital/node-api-for-postman.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/stpb-digital/node-api-for-postman/issues"
-  },
-  "homepage": "https://github.com/stpb-digital/node-api-for-postman#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "express-routes-versioning": "^1.0.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "openapi-backend": "^5.9.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.0",
+    "totoro-node": "^2.0.5",
+    "yamljs": "^0.3.0"
   }
 }

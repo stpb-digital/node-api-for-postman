@@ -1,23 +1,53 @@
-const express = require('express');
+var createError = require('http-errors');
+var express = require('express');
+var path = require('path');
+const bodyParser = require('body-parser');
+var logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const swaggerRouter = require('./swagger');
+
+var indexRouter = require('./routes/index');
 const app = express();
-const port = 13000; // เปลี่ยนเลขพอร์ตตามต้องการ
+/* Routes */
+const router1 = require('./routes/v1/routes')
+const router2 = require('./routes/v2/routes2')
 
-// เพิ่ม route สำหรับการ handle request GET
-app.get('/', (req, res) => {
-  res.send('Hello World!'); // ส่งข้อความ 'Hello World!' กลับไปยัง client
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
+
+app.use(bodyParser.json());
+app.use(swaggerRouter);
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', indexRouter);
+/* route */
+app.use('/v1', router1)
+app.use('/v2', router2)
+
+app.use(function (req, res, next) {
+  // console.log(err)
+  next();
 });
 
-// เพิ่ม route สำหรับการ handle request GET
-app.get('/test', (req, res) => {
-    res.send('Hello World!'); // ส่งข้อความ 'Hello World!' กลับไปยัง client
-  });
+// error handler
+app.use(function (err, req, res, next) {
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
-// ถ้าไม่พบ route ที่ตรงกับที่ร้องขอ
-app.use((req, res) => {
-  res.status(404).send('Not Found'); // ส่งข้อความ 'Not Found' และ HTTP status code 404 กลับไปยัง client
+  // render the error page
+  res.status(err.status || 500);
+  res.render('error');
 });
 
-// เริ่มต้นให้ server ทำงานที่ port ที่กำหนด
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports = app;
