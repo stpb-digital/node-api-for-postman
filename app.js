@@ -11,7 +11,7 @@ const app = express();
 /* Routes */
 const router1 = require('./routes/v1/routes')
 const router2 = require('./routes/v2/routes2')
-
+const router3 = require('./routes/v3/routes')
 app.use(bodyParser.urlencoded({
   extended: true
 }));
@@ -33,7 +33,7 @@ app.use('/', indexRouter);
 /* route */
 app.use('/v1', router1)
 app.use('/v2', router2)
-
+app.use('/v3', router3)
 app.use(function (req, res, next) {
   // console.log(err)
   next();
@@ -49,5 +49,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+console.log("Server is running!\n\nAPI documentation: http://localhost:3000/api-docs")
 
 module.exports = app;

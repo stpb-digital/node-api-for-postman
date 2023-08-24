@@ -3,7 +3,7 @@ const express = require('express');
 const swaggerUi = require('swagger-ui-express');
 const router = express.Router();
 
-const versions = ['v1', 'v2'];
+const versions = ['v1', 'v2','v3'];
 const swaggerDocs = {};
 
 versions.forEach(version => {
