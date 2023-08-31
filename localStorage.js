@@ -54,11 +54,11 @@ const checkUsername = (data) => {
   return rtn;
 };
 
-const checkEmail = (data) => {
+const checkEmail = (data,username) => {
   var rtn = false
   var dataAll = getAll()
   dataAll.forEach(element => {
-    if (element.email == data) {
+    if (element.email == data && element.username != username) {
       rtn = true;
     }
   });

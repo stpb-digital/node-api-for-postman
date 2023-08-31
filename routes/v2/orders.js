@@ -50,6 +50,12 @@ router.get('/', function (req, res, next) {
  *         description: search order by id
  *         schema:
  *           type: string
+ *       - in: header
+ *         name: os
+ *         required: true
+ *         description: os device
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -66,7 +72,12 @@ router.get('/', function (req, res, next) {
  */
 router.get('/:id', (req, res) => {
     const order = productStorage.readOrder(req.params.id);
-    if (order) {
+    const osDevice = req.headers.os;
+    //console.log("osss "+osDevice);
+    if(osDevice == 0 || osDevice == undefined){
+        res.status(400).json({ code: "O002", message: 'os is null' });
+    }
+    else if (order) {
         res.json({ code: "0000", order });
     } else {
         res.status(404).json({ code: "O001", message: 'order not found' });

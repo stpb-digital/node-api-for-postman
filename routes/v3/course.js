@@ -50,6 +50,12 @@ router.get('/', function (req, res, next) {
  *         description: search course by id
  *         schema:
  *           type: string
+ *       - in: header
+ *         name: os
+ *         required: true
+ *         description: os device
+ *         schema:
+ *           type: string
  *     responses:
  *       200:
  *         description: Successful response
@@ -66,8 +72,12 @@ router.get('/', function (req, res, next) {
  */
 router.get('/:id', (req, res) => {
     const course = courseStorage.read(req.params.id);
-
-    if (course) {
+    const osDevice = req.headers.os;
+    //console.log("osss "+osDevice);
+    if(osDevice == 0 || osDevice == undefined){
+        res.status(400).json({ code: "C002", message: 'os is null' });
+    }
+    else if (course) {
         res.json({ course });
     } else {
         res.status(404).json({ code: "C001", message: 'course not found' });
@@ -215,18 +225,13 @@ router.put('/:id', (req, res) => {
  *         description: id of the course to update
  *         schema:
  *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               price:
- *                 type: string
- *                 description: The course's name.
- *                 example: 4500
- *              
+ *       - in: query
+ *         name: price
+ *         required: true
+ *         description: price of the course to update
+ *         schema:
+ *           type: string
+ 
  *     responses:
  *       201:
  *         description: course created successfully
@@ -242,8 +247,9 @@ router.put('/:id', (req, res) => {
  *               {code: "C001",message: 'course not found'}
  */
 router.patch('/:id', (req, res) => {
-    const price = req.body;
-    if (price == 0) {
+    const price = req.query.price;
+    //console.log("price"+price);
+    if (price == 0 || price == undefined) {
         res.status(400).json({ code: "C002", message: 'price is null' });
     }
     else {

@@ -200,12 +200,9 @@ router.put('/:username', (req, res) => {
     res.status(400).json({ code: "U002", message: 'email is null' });
 
   } else {
-    var checkUser = localStorage.checkUsername(username)
-    var checkEmail = localStorage.checkEmail(email)
-    if (checkUser) {
-      res.status(400).json({ code: "U003", message: 'This username is already used' });
-    }
-    else if (checkEmail) {
+   // var checkUser = localStorage.checkUsername(req.params.username)
+    var checkEmail = localStorage.checkEmail(email,req.params.username)
+  if (checkEmail) {
       res.status(400).json({ code: "U003", message: 'This email is already used' });
     }
     else {

@@ -66,7 +66,7 @@ router.get('/', function (req, res, next) {
  */
 router.get('/:id', (req, res) => {
     const product = productStorage.read(req.params.id);
-    console.log(product);
+   
     if (product) {
         res.json({ code: "0000", product });
     } else {
@@ -236,18 +236,12 @@ router.put('/:id', (req, res) => {
  *         description: id of the product to update
  *         schema:
  *           type: string
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             type: object
- *             properties:
- *               price:
- *                 type: string
- *                 description: The product's name.
- *                 example: 4500
- *              
+ *       - in: query
+ *         name: price
+ *         required: true
+ *         description: price of the product to update
+ *         schema:
+ *           type: string
  *     responses:
  *       201:
  *         description: product created successfully
@@ -263,8 +257,8 @@ router.put('/:id', (req, res) => {
  *               { code: "P001",message: 'product not found'}
  */
 router.patch('/:id', (req, res) => {
-    const price = req.body;
-    if (price == 0) {
+    const price = req.query.price;
+    if (price == 0 || price == undefined) {
         res.status(400).json({ code: "P002", message: 'price is null' });
     }
     else {
