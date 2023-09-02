@@ -99,7 +99,7 @@ const update = (id, data) => {
 const updatePrice = (id, data) => {
     if (storage[id]) {
         var data1 = storage[id]
-        data1.price = data.price
+        data1.price = data
         storage[id] = data1
         return true;
     }
