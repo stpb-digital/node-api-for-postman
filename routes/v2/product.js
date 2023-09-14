@@ -135,6 +135,7 @@ router.post('/', (req, res) => {
             const product = { id, producttype, productname, price };
             productStorage.create(id, product);
             res.status(201).json({
+                code: "0000",
                 message: 'product created successfully',
                 productId: id
             });
