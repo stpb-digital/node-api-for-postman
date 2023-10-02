@@ -78,7 +78,7 @@ router.get('/:id', (req, res) => {
         res.status(400).json({ code: "C002", message: 'os is null' });
     }
     else if (course) {
-        res.json({ course });
+        res.json({ code: "0000", course });
     } else {
         res.status(404).json({ code: "C001", message: 'course not found' });
     }
