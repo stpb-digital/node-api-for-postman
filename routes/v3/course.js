@@ -198,9 +198,12 @@ router.put('/:id', (req, res) => {
     else if (price == 0) {
         res.status(400).json({ code: "C002", message: 'price is null' });
     }
+    else if (req.params.id == 0) {
+        res.status(400).json({ code: "C002", message: 'id is null' });
+    }
     else {
-        const updatedcourse = { id: req.params.id, coursename, price };
-        const success = courseStorage.update(req.params.id, updatedcourse);
+        const updatedcourse = { id: parseInt(req.params.id), coursename, price };
+        const success = courseStorage.update(parseInt(req.params.id), updatedcourse);
         if (success) {
             res.json({ code: "0000", message: 'course updated successfully' });
         } else {

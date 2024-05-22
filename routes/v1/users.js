@@ -180,11 +180,11 @@ router.post('/', (req, res) => {
  *                 example: testnaja@gmail.com
  *     responses:
  *       201:
- *         description: User created successfully
+ *         description: User updated successfully
  *         content:
  *           application/json:
  *             example:
- *               { code: "0000",message: 'User created successfully'}
+ *               { code: "0000",message: 'User updated successfully'}
  *       404:
  *         description: user not found
  *         content:
