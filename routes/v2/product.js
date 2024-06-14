@@ -181,7 +181,7 @@ router.post('/', (req, res) => {
  *                 description: The product's price.
  *                 example: 450
  *     responses:
- *       201:
+ *       200:
  *         description: product created successfully
  *         content:
  *           application/json:
@@ -244,7 +244,7 @@ router.put('/:id', (req, res) => {
  *         schema:
  *           type: string
  *     responses:
- *       201:
+ *       200:
  *         description: product created successfully
  *         content:
  *           application/json:

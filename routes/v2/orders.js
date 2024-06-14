@@ -193,7 +193,7 @@ router.post('/', (req, res) => {
  *                 description: The order's price.
  *                 example: 3
  *     responses:
- *       201:
+ *       200:
  *         description: order Update successfully
  *         content:
  *           application/json:

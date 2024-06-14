@@ -179,7 +179,7 @@ router.post('/', (req, res) => {
  *                 description: The user's name.
  *                 example: testnaja@gmail.com
  *     responses:
- *       201:
+ *       200:
  *         description: User updated successfully
  *         content:
  *           application/json:

@@ -177,7 +177,7 @@ router.post('/', (req, res) => {
  *                 description: The course's name.
  *                 example: 4500
  *     responses:
- *       201:
+ *       200:
  *         description: course created successfully
  *         content:
  *           application/json:
@@ -236,7 +236,7 @@ router.put('/:id', (req, res) => {
  *           type: string
  
  *     responses:
- *       201:
+ *       200:
  *         description: course created successfully
  *         content:
  *           application/json:
