@@ -182,11 +182,11 @@ router.post('/', (req, res) => {
  *                 example: 450
  *     responses:
  *       200:
- *         description: product created successfully
+ *         description: product updated successfully
  *         content:
  *           application/json:
  *             example:
- *               {code: "0000",message: 'product created successfully'}
+ *               {code: "0000",message: 'product updated successfully'}
  *       404:
  *         description: product not found
  *         content:
@@ -245,11 +245,11 @@ router.put('/:id', (req, res) => {
  *           type: string
  *     responses:
  *       200:
- *         description: product created successfully
+ *         description: product updated successfully
  *         content:
  *           application/json:
  *             example:
- *               { code: "0000",message: 'product created successfully'}
+ *               { code: "0000",message: 'product updated successfully'}
  *       404:
  *         description: product not found
  *         content:

@@ -178,11 +178,11 @@ router.post('/', (req, res) => {
  *                 example: 4500
  *     responses:
  *       200:
- *         description: course created successfully
+ *         description: course updated successfully
  *         content:
  *           application/json:
  *             example:
- *               {code: "0000", message: 'course created successfully'}
+ *               {code: "0000", message: 'course updated successfully'}
  *       404:
  *         description: course not found
  *         content:
@@ -237,11 +237,11 @@ router.put('/:id', (req, res) => {
  
  *     responses:
  *       200:
- *         description: course created successfully
+ *         description: course updated successfully
  *         content:
  *           application/json:
  *             example:
- *               {code: "0000",message: 'course created successfully'}
+ *               {code: "0000",message: 'course updated successfully'}
  *       404:
  *         description: course not found
  *         content:

@@ -194,11 +194,11 @@ router.post('/', (req, res) => {
  *                 example: 3
  *     responses:
  *       200:
- *         description: order Update successfully
+ *         description: order updated successfully
  *         content:
  *           application/json:
  *             example:
- *               {code: "0000",message: 'order Update successfully'}
+ *               {code: "0000",message: 'order updated successfully'}
  *       404:
  *         description: order not found
  *         content:
