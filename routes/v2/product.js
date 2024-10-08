@@ -128,10 +128,12 @@ router.post('/', (req, res) => {
     }
     else {
         var checkType = productStorage.readtype(producttype)
-        console.log("prodType " + checkType)
         if (checkType) {
             var productAll = productStorage.getAll();
             var id = productAll.length + 1
+            if (productAll.length > 0) {
+                id = productAll[productAll.length - 1].id + 1
+            }
             const product = { id, producttype, productname, price };
             productStorage.create(id, product);
             res.status(201).json({

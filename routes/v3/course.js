@@ -135,6 +135,9 @@ router.post('/', (req, res) => {
     else {
         var courseAll = courseStorage.getAll();
         var id = courseAll.length + 1
+        if (courseAll.length > 0) {
+            id = courseAll[courseAll.length - 1].id + 1
+        }
         const course = { id, coursename, price };
         courseStorage.create(id, course);
         res.status(201).json({

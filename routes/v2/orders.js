@@ -144,6 +144,9 @@ router.post('/', (req, res) => {
         if (checkProduct) {
             var orderAll = productStorage.getAllOrder();
             var id = orderAll.length + 1
+            if (orderAll.length > 0) {
+                id = orderAll[orderAll.length - 1].id + 1
+            }
             const order = { id, producutid, username, quantity };
             productStorage.createOrder(id, order);
             res.status(201).json({
