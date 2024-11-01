@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
     if (product != 0) {
         res.json({ code: "0000", product });
     } else {
-        res.status(404).json({ code: "C001", message: 'product not found' });
+        res.status(404).json({ code: "P001", message: 'Product not found' });
     }
 });
 
@@ -58,11 +58,11 @@ router.get('/', function (req, res, next) {
  *             example:
  *               {code: "0000",product: { "id": "1", producttype: '1', "productname" : "เสื้อครอบ", "price": 4500  }}
  *       404:
- *         description: product not found
+ *         description: Product not found
  *         content:
  *           application/json:
  *             example:
- *               {code: "P001",message: 'product not found'}
+ *               {code: "P001",message: 'Product not found'}
  */
 router.get('/:id', (req, res) => {
     const product = productStorage.read(req.params.id);
@@ -70,7 +70,7 @@ router.get('/:id', (req, res) => {
     if (product) {
         res.json({ code: "0000", product });
     } else {
-        res.status(404).json({ code: "P001", message: 'product not found' });
+        res.status(404).json({ code: "P001", message: 'Product not found' });
     }
 
 });
@@ -105,26 +105,26 @@ router.get('/:id', (req, res) => {
  *                 example: 450
  *     responses:
  *       201:
- *         description: product created successfully
+ *         description: Product created successfully
  *         content:
  *           application/json:
  *             example:
- *               { code: "0000",message: 'product created successfully'}
+ *               { code: "0000",message: 'Product created successfully'}
  *       400:
- *         description: product not found
+ *         description: Product not found
  *         content:
  *           application/json:
  *             example:
- *               { code: "P002", message: 'product name is null'}
+ *               { code: "P002", message: 'Product name is null'}
  */
 router.post('/', (req, res) => {
     const { producttype, productname, price } = req.body;
 
     if (productname == 0) {
-        res.status(400).json({ code: "P002", message: 'product name is null' });
+        res.status(400).json({ code: "P002", message: 'Product name is null' });
     }
     else if (producttype == 0) {
-        res.status(400).json({ code: "P002", message: 'product type is null' });
+        res.status(400).json({ code: "P002", message: 'Product type is null' });
     }
     else {
         var checkType = productStorage.readtype(producttype)
@@ -138,11 +138,11 @@ router.post('/', (req, res) => {
             productStorage.create(id, product);
             res.status(201).json({
                 code: "0000",
-                message: 'product created successfully',
+                message: 'Product created successfully',
                 productId: id
             });
         } else {
-            res.status(400).json({ code: "P003", message: 'product type is incorrect' });
+            res.status(400).json({ code: "P003", message: 'Product type is incorrect' });
         }
     }
 });
@@ -184,28 +184,28 @@ router.post('/', (req, res) => {
  *                 example: 450
  *     responses:
  *       200:
- *         description: product updated successfully
+ *         description: Product updated successfully
  *         content:
  *           application/json:
  *             example:
- *               {code: "0000",message: 'product updated successfully'}
+ *               {code: "0000",message: 'Product updated successfully'}
  *       404:
- *         description: product not found
+ *         description: Product not found
  *         content:
  *           application/json:
  *             example:
- *               {code: "P001",message: 'product not found'}
+ *               {code: "P001",message: 'Product not found'}
  */
 router.put('/:id', (req, res) => {
     const { producttype, productname, price } = req.body;
     if (producttype == 0) {
-        res.status(400).json({ code: "P002", message: 'productname name is null' });
+        res.status(400).json({ code: "P002", message: 'Product name is null' });
     }
     else if (productname == 0) {
-        res.status(400).json({ code: "P002", message: 'productname is null' });
+        res.status(400).json({ code: "P002", message: 'Product name is null' });
     }
     else if (price == 0) {
-        res.status(400).json({ code: "P002", message: 'price is null' });
+        res.status(400).json({ code: "P002", message: 'Price is null' });
     }
     else {
         var checkType = productStorage.readtype(producttype)
@@ -213,12 +213,12 @@ router.put('/:id', (req, res) => {
             const updatedproduct = { id: req.params.id, producttype, productname, price };
             const success = productStorage.update(req.params.id, updatedproduct);
             if (success) {
-                res.json({ code: "0000", message: 'product updated successfully' });
+                res.json({ code: "0000", message: 'Product updated successfully' });
             } else {
-                res.status(404).json({ code: "P001", message: 'product not found' });
+                res.status(404).json({ code: "P001", message: 'Product not found' });
             }
         } else {
-            res.status(400).json({ code: "P003", message: 'product type is incorrect' });
+            res.status(400).json({ code: "P003", message: 'Product type is incorrect' });
         }
     }
 });
@@ -247,29 +247,29 @@ router.put('/:id', (req, res) => {
  *           type: string
  *     responses:
  *       200:
- *         description: product updated successfully
+ *         description: Product updated successfully
  *         content:
  *           application/json:
  *             example:
- *               { code: "0000",message: 'product updated successfully'}
+ *               { code: "0000",message: 'Product updated successfully'}
  *       404:
- *         description: product not found
+ *         description: Product not found
  *         content:
  *           application/json:
  *             example:
- *               { code: "P001",message: 'product not found'}
+ *               { code: "P001",message: 'Product not found'}
  */
 router.patch('/:id', (req, res) => {
     const price = req.query.price;
     if (price == 0 || price == undefined) {
-        res.status(400).json({ code: "P002", message: 'price is null' });
+        res.status(400).json({ code: "P002", message: 'Price is null' });
     }
     else {
         const success = productStorage.updatePrice(req.params.id, price);
         if (success) {
-            res.json({ code: "0000", message: 'product updated successfully' });
+            res.json({ code: "0000", message: 'Product updated successfully' });
         } else {
-            res.status(404).json({ code: "P001", message: 'product not found' });
+            res.status(404).json({ code: "P001", message: 'Product not found' });
         }
     }
 });
@@ -298,18 +298,18 @@ router.patch('/:id', (req, res) => {
  *             example:
  *               { code: "0000",message: 'product deleted successfully'}
  *       404:
- *         description: product not found
+ *         description: Product not found
  *         content:
  *           application/json:
  *             example:
- *               { code: "P001",message: 'productname is found'}
+ *               { code: "P001",message: 'Product not found'}
  */
 router.delete('/:id', (req, res) => {
     const success = productStorage.remove(req.params.id);
     if (success) {
         res.json({ code: "0000",message: 'product deleted successfully' });
     } else {
-        res.status(404).json({code: "P001", message: 'product not found' });
+        res.status(404).json({code: "P001", message: 'Product not found' });
     }
 });
 
