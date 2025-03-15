@@ -115,7 +115,7 @@ router.get('/:id', (req, res) => {
  *         content:
  *           application/json:
  *             example:
- *               {code: "0000", message: 'course created successfully', courseId:1}
+ *               {code: "0000", message: "course created successfully", courseId: 1}
  *       400:
  *         description: course name is null
  *         content:
